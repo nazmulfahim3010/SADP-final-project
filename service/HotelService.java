@@ -17,7 +17,7 @@ public class HotelService {
         rooms = fileService.loadRooms();
     }
 
-    public void addObserver(Observer o) {
+    public void addObserver(pattern.Observer o) {
         notifier.addObserver(o);
     }
 
@@ -51,5 +51,13 @@ public class HotelService {
                 count++;
         }
         return count;
+    }
+
+    public List<Room> getRooms() {
+        return Collections.unmodifiableList(rooms);
+    }
+
+    public List<Booking> getBookings() {
+        return Collections.unmodifiableList(bookings);
     }
 }

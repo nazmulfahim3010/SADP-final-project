@@ -31,10 +31,17 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Top dashboard / status bar
-        DashboardPanel dashboard = new DashboardPanel();
-        dashboard.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        add(dashboard, BorderLayout.NORTH);
+        // Top application header
+        JLabel headerTitle = new JLabel("Hotel Management System");
+        headerTitle.setFont(headerTitle.getFont().deriveFont(Font.BOLD, 24f));
+        headerTitle.setForeground(Color.WHITE);
+
+        JPanel header = new JPanel(new BorderLayout());
+        header.setBackground(new Color(45, 45, 45));
+        header.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        header.add(headerTitle, BorderLayout.WEST);
+
+        add(header, BorderLayout.NORTH);
 
         // Left navigation with a modern feel
         JPanel navPanel = new JPanel();
@@ -59,7 +66,7 @@ public class MainFrame extends JFrame {
         contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JPanel dashboardContainer = new JPanel(new BorderLayout());
-        dashboardContainer.add(dashboard, BorderLayout.CENTER);
+        dashboardContainer.add(new DashboardPanel(), BorderLayout.CENTER);
 
         JPanel paymentPanel = createPaymentPanel();
 
