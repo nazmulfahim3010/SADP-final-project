@@ -10,7 +10,7 @@ public class HotelService {
 
     private List<Room> rooms;
     private List<Booking> bookings = new ArrayList<>();
-    private FileService fileService = new FileService();
+    private FileManager fileService = FileManager.getInstance();
     private BookingNotifier notifier = new BookingNotifier();
 
     public HotelService() {
