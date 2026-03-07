@@ -10,11 +10,12 @@ public class HotelService {
 
     private List<Room> rooms;
     private List<Booking> bookings = new ArrayList<>();
-    private FileManager fileService = FileManager.getInstance();
+    private FileService fileService = new FileService();
     private BookingNotifier notifier = new BookingNotifier();
 
     public HotelService() {
         rooms = fileService.loadRooms();
+        bookings = fileService.loadBookings();
     }
 
     public void addObserver(pattern.Observer o) {
@@ -33,6 +34,7 @@ public class HotelService {
                 r.setAvailable(false);
                 bookings.add(new Booking(number, customer));
                 fileService.saveRooms(rooms);
+                fileService.saveBookings(bookings);
                 notifier.notifyObservers();
                 return true;
             }
