@@ -1,0 +1,11 @@
+service\HotelService.java:18: error: cannot find symbol
+        bookings = fileService.loadBookings();
+                              ^
+  symbol:   method loadBookings()
+  location: variable fileService of type FileManager
+service\HotelService.java:37: error: cannot find symbol
+                fileService.saveBookings(bookings);
+                           ^
+  symbol:   method saveBookings(List<Booking>)
+  location: variable fileService of type FileManager
+2 errors
