@@ -35,7 +35,7 @@ public class DataStore implements Serializable {
 
     public void saveCustomerState() { undoStack.push(new DataStoreMemento(this.customers)); }
     public void undoCustomerChange() {
-        if (!undoStack.isEmpty()) { this.customers = undoStack.pop().getSavedCustomers(); notifyObservers(); }
+        if (!undoStack.isEmpty()) { this.customers = undoStack.pop().getSavedCustomers(); notifyObservers(); autoSave(); }
     }
 
     public List<Room> getRooms() { return rooms; }
@@ -43,12 +43,16 @@ public class DataStore implements Serializable {
     public List<Reservation> getPendingReservations() { return pendingReservations; }
     public List<Reservation> getConfirmedReservations() { return confirmedReservations; }
 
-    public void addRoom(Room r) { rooms.add(r); notifyObservers(); }
-    public void addCustomer(Customer c) { saveCustomerState(); customers.add(c); notifyObservers(); }
-    public void removeCustomer(Customer c) { saveCustomerState(); customers.remove(c); notifyObservers(); }
+    public void addRoom(Room r) { rooms.add(r); notifyObservers(); autoSave(); }
+    public void addCustomer(Customer c) { saveCustomerState(); customers.add(c); notifyObservers(); autoSave(); }
+    public void removeCustomer(Customer c) { saveCustomerState(); customers.remove(c); notifyObservers(); autoSave(); }
     
-    public void addPendingReservation(Reservation r) { pendingReservations.add(r); notifyObservers(); }
-    public void addConfirmedReservation(Reservation r) { confirmedReservations.add(r); notifyObservers(); }
+    public void addPendingReservation(Reservation r) { pendingReservations.add(r); notifyObservers(); autoSave(); }
+    public void addConfirmedReservation(Reservation r) { confirmedReservations.add(r); notifyObservers(); autoSave(); }
+
+    private void autoSave() {
+        try { saveAll("hoteldata.dat"); } catch (Exception ignored) {}
+    }
 
     public void saveAll(String file) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) { oos.writeObject(this); }

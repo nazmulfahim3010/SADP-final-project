@@ -28,9 +28,8 @@ public class ReservationFacade {
                 .orElse(null);
         if (r != null) {
             db.getPendingReservations().remove(r);
-            db.addConfirmedReservation(r);
             r.getRoom().setStatus(Room.RoomStatus.BOOKED);
-            db.notifyObservers();
+            db.addConfirmedReservation(r); // autoSave is called inside this
         }
     }
 }
