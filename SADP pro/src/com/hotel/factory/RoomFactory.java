@@ -9,11 +9,6 @@ public class RoomFactory {
     }
 }
 
-/**
- * DESIGN PATTERN: FACTORY METHOD
- * 
- * WHY:
- * Provides an interface for creating room objects but allows the 
- * factory to decide which specific room model to instantiate. 
- * This decouples the Room Panel from the internal details of Room creation.
- */
+class romming {
+
+}
