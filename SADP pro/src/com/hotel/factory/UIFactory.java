@@ -193,7 +193,3 @@ public class UIFactory {
         return tf;
     }
 }
-
-class coloring {
-
-}

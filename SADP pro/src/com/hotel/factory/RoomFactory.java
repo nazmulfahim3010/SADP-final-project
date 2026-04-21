@@ -8,7 +8,3 @@ public class RoomFactory {
         return new Room(roomId, type, pricePerNight);
     }
 }
-
-class romming {
-
-}
